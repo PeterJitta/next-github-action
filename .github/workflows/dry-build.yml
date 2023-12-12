@@ -4,6 +4,7 @@ run-name: ${{ github.actor }} is  dry build
 on: 
     pull_request:
         types: [ labeled ]
+    # all just push ?
 
 jobs:
     setup:
@@ -21,4 +22,19 @@ jobs:
               run: npm install
             - name: build project
               run: npm run build
+    comment-success-on-build:
+        needs: setup
+        if: ${{ success() }}
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/github-script@v6
+            with:
+              script: |
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: '👋 build success !'
+                })
+    
     # if pass or fail just comment on pr
