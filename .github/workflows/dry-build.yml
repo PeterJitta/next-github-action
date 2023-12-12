@@ -17,11 +17,6 @@ jobs:
                 cache: 'npm'
             - name: install npm
               run: npm install npm@9
-    build:
-        if: ${{ github.event.label.name == 'build' }}
-        runs-on: ubuntu-latest
-        needs: setup
-        steps:
             - name: install packages
               run: npm install
             - name: build project
