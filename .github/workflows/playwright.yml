@@ -2,8 +2,8 @@ name: Playwright Tests
 run-name: ${{ github.actor }} is running Playwright test
 
 on:
-  push:
-    branches: [ "*" ]
+  # push:
+  #   branches: [ "*" ]
   pull_request:
     branches: [ "*" ]
 jobs:
