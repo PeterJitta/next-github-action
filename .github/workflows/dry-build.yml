@@ -1,4 +1,4 @@
-name: dry build
+name: Dry Build
 run-name: ${{ github.actor }} is  dry build
 
 on: 
