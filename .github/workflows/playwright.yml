@@ -27,18 +27,16 @@ jobs:
       if: always()
       with:
         name: playwright-report
-        path: playwright-report/
+        path: playwright-report
         retention-days: 30
-  publish-to-github-page:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
     - name: Setup Page
       uses: actions/configure-pages@v2
     - name: Upload artifact
+      if: always()
       uses: actions/upload-pages-artifact@v1
       with:
-        path: playwright-report/
+        name: playwright-report
+        path: playwright-report
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v1
