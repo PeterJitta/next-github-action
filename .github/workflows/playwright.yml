@@ -11,7 +11,7 @@ permissions:
  id-token: write
 
 jobs:
-  test:
+  test-deploy-playwright-report:
     permissions: write-all
     timeout-minutes: 60
     runs-on: ubuntu-latest
@@ -20,13 +20,14 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+        cache: "npm"
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       env:
-        BASEURL: ${{ env.BASEURL }}
+        BASEURL: "https://playwright.dev/"
       run: npx playwright test
     - uses: actions/upload-artifact@v3
       if: always()
