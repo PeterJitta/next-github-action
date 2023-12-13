@@ -31,6 +31,7 @@ jobs:
         retention-days: 30
   publish-to-github-page:
     runs-on: ubuntu-latest
+    needs: test
     steps:
     - name: Setup Page
       uses: actions/configure-pages@v2
