@@ -29,3 +29,16 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+  publish-to-github-page:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Page
+      uses: actions/configure-pages@v2
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: playwright-report/
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
+
