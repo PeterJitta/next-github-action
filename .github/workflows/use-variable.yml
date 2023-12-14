@@ -1,5 +1,5 @@
 name: Use Variable and Secret Key
-run-name: ${{github.action_status}} ${{ github.actor }} ${{ github.workflow }} on ${{ github.env }}
+run-name: ${{ github.actor }} ${{ github.workflow }}
 
 on:
     push:
@@ -10,3 +10,5 @@ jobs:
         steps:
             - name: print Hello World
               run: echo "Hello World"
+            - name: repository secret
+              run: echo "${{secrets.REPO_SECRET}}"
