@@ -34,5 +34,13 @@ jobs:
         steps:
             - name: Print output from run1
               run: echo "${{needs.run1.outputs.PAYLOAD}}"
+    run3:
+        runs-on: ubuntu-latest
+        needs: ["run1", "run2"]
+        environment: TEST_ENV
+        steps:
+            - name: Print Variable from ENV
+              run: echo ${{vars.URL}}
+        
     # get variable based on env
     # env should sttach with branch >
