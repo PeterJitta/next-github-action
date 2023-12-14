@@ -10,8 +10,12 @@ jobs:
         steps:
             - name: Print Hello World
               run: echo "Hello World"
-            - name: Repository variable
+            - name: Use Repository variable directly
               run: echo "${{vars.REPO_VARIABLE}}"
+            - name: Use Repository variable directly
+              env:
+                REPO_VAR: "${{vars.REPO_VARIABLE}} ++"
+              run: echo "${{env.REPO_VAR}}"
             - name: Repository Secret
               run: |
                 echo "The GitHub Action Secret will be masked:  "
