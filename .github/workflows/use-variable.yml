@@ -5,14 +5,16 @@ on:
     push:
 
 jobs:
-    run:
+    run1:
         runs-on: ubuntu-latest
+        outputs:
+            PAYLOAD: ${{vars.REPO_VARIABLE}} Cross from run1
         steps:
             - name: Print Hello World
               run: echo "Hello World"
             - name: Use Repository variable directly
               run: echo "${{vars.REPO_VARIABLE}}"
-            - name: Use Repository variable directly
+            - name: Use Repository variable from env.
               env:
                 REPO_VAR: "${{vars.REPO_VARIABLE}} ++"
               run: echo "${{env.REPO_VAR}}"
@@ -22,3 +24,11 @@ jobs:
                 echo ${{ secrets.REPO_SECRET }}
                 echo "Trick to echo GitHub Actions Secret:  "
                 echo ${{secrets.REPO_SECRET}} | sed 's/./& /g'
+    run2:
+        runs-on: ubuntu-latest
+        needs: run1
+        steps:
+            - name: Print output from run1
+              run: echo "${{needs.run1.outputs.PAYLOAD}}"
+    # get variable based on env
+    # env should sttach with branch >
