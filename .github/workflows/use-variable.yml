@@ -11,4 +11,4 @@ jobs:
             - name: print Hello World
               run: echo "Hello World"
             - name: repository secret
-              run: echo "${{secrets.REPO_SECRET}}"
+              run: echo "${{vars.REPO_VARIABLE}}"
