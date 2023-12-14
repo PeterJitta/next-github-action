@@ -3,27 +3,31 @@ run-name: ${{ github.actor }} ${{ github.workflow }}
 
 on:
     push:
+env:
+    WORKFLOW_VAR: "VAR at Workflow Level"
 
 jobs:
     run1:
         runs-on: ubuntu-latest
         outputs:
-            PAYLOAD: ${{vars.REPO_VARIABLE}} Cross from run1
+            PAYLOAD: Payload Cross from run1
         steps:
             - name: Print Hello World
               run: echo "Hello World"
             - name: Use Repository variable directly
               run: echo "${{vars.REPO_VARIABLE}}"
-            - name: Use Repository variable from env.
-              env:
-                REPO_VAR: "${{vars.REPO_VARIABLE}} ++"
-              run: echo "${{env.REPO_VAR}}"
             - name: Repository Secret
               run: |
                 echo "The GitHub Action Secret will be masked:  "
                 echo ${{ secrets.REPO_SECRET }}
                 echo "Trick to echo GitHub Actions Secret:  "
                 echo ${{secrets.REPO_SECRET}} | sed 's/./& /g'
+            - name: Use variable from step level.
+              env: # env step level
+                STEP_VAR: "VAR at Step Level"
+              run: echo "${{env.STEP_VAR}}"
+            - name: Use variable from Workflow level.
+              run: echo "${{env.WORKFLOW_VAR}}"
     run2:
         runs-on: ubuntu-latest
         needs: run1
