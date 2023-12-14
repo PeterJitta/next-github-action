@@ -8,7 +8,13 @@ jobs:
     run:
         runs-on: ubuntu-latest
         steps:
-            - name: print Hello World
+            - name: Print Hello World
               run: echo "Hello World"
-            - name: repository secret
+            - name: Repository variable
               run: echo "${{vars.REPO_VARIABLE}}"
+            - name: Repository Secret
+              run: |
+                echo "The GitHub Action Secret will be masked:  "
+                echo ${{ secrets.REPO_SECRET }}
+                echo "Trick to echo GitHub Actions Secret:  "
+                echo ${{secrets.REPO_SECRET}} | sed 's/./& /g'
