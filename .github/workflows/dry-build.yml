@@ -1,25 +1,58 @@
-name: dry build
-run-name: ${{ github.actor }} is building
+name: Dry Build
+run-name: ${{ github.actor }} is  dry build
 
 on: 
     pull_request:
+        types: [ labeled ]
+    # all just push ?
 
 jobs:
     setup:
+        if: ${{ github.event.label.name == 'build' }}
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - name: Check out repositoryb code
+              uses: actions/checkout@v4
+            - run: echo "The ${{github.repository}} repository has been cloned to runner"
             - uses: actions/setup-node@v4
               with:
                 node-version: 18
                 cache: 'npm'
             - name: install npm
               run: npm install npm@9
-    build:
-        runs-on: ubuntu-latest
-        steps:
             - name: install packages
               run: npm install
             - name: build project
               run: npm run build
-    # if pass or fail just comment on pr
+            - name: List files in the repository
+              run: |
+                ls ${{github.workspace}}
+            - run: echo "job staus => ${{job.status}}"
+    comment-success-on-build:
+        needs: setup
+        if: ${{ success() }}
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/github-script@v6
+            with:
+              script: |
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: '👋 build success !'
+                })
+    comment-fail-on-build:
+        needs: setup
+        if: ${{ failure() }}
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/github-script@v6
+            with:
+              script: |
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: '🫢 build fail !'
+                })
