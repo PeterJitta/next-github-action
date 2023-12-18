@@ -4,10 +4,10 @@ run-name: ${{ github.actor }} ${{ github.workflow }}
 
 on: 
     schedule:
-        - cron: '*/1 * * * *'
+        - cron: '*/5 * * * *'
 
 jobs:
-    schedule:
+    task:
         runs-on: ubuntu-latest
         steps:
             - name: run echo
