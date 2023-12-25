@@ -50,6 +50,16 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
+    // {
+    //   name: "automate test",
+    //   testDir: "./e2e"
+    // },
+
+    {
+      name: "web scraping",
+      testDir: "./web-scraping",
+    },
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

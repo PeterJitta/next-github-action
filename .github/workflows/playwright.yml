@@ -28,7 +28,7 @@ jobs:
     - name: Run Playwright tests
       env:
         BASEURL: "https://playwright.dev/"
-      run: npx playwright test
+      run: npx playwright test /e2e
     - uses: actions/upload-artifact@v3
       if: always()
       with:
