@@ -2,12 +2,9 @@ name: Manual Web Scarping
 run-name: ${{ github.actor }} ${{ github.workflow }}
 
 on:
-    pull_request:
-        types: [ labeled ]
     workflow_dispatch:
 jobs:
     collect-data:
-      if: ${{ github.event.label.name == 'collect data' }}
       runs-on: ubuntu-latest
       steps:
       - name: Check out this repo
