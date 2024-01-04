@@ -1,4 +1,4 @@
-name: Workflow Caller
+name: Input Workflow
 run-name: ${{ github.actor }} ${{ github.workflow }}
 
 on:
