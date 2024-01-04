@@ -1,0 +1,16 @@
+name: Workflow Caller
+run-name: ${{ github.actor }} ${{ github.workflow }}
+
+on:
+    workflow_dispatch:
+        inputs:
+            name:
+                description: 'Person to greet'
+                default: 'Peter'
+                required: true
+jobs:
+    hello:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Send greeting
+          run: echo "Hello ${{ github.event.inputs.name }}"       
