@@ -1,0 +1,10 @@
+name: Workflow Caller
+run-name: ${{ github.actor }} ${{ github.workflow }}
+
+on:
+    workflow_dispatch:
+jobs:
+    call-reusable-workflow:
+        uses: PeterJitta/next-github-action/.github/workflows/reusable-workflow.yml@main
+        with:
+            username: Peter

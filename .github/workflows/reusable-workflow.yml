@@ -1,0 +1,15 @@
+name: Reuse Workflow
+run-name: ${{ github.actor }} ${{ github.workflow }}
+
+on:
+    workflow_call:
+        inputs:
+            username:
+                required: true
+                type: string
+jobs:
+    echo_username:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run hello username
+              run: echo Hello, ${{ inputs.username }}
