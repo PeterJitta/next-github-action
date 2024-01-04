@@ -1,4 +1,4 @@
-name: Input Workflow
+name: run Input Workflow
 run-name: ${{ github.actor }} ${{ github.workflow }}
 
 on:
