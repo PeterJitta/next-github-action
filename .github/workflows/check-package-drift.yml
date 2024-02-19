@@ -1,0 +1,26 @@
+# Step 1 check out main and get that package file
+# Step 2 save package version to output
+
+name: Checking package version drift
+run-name: ${{ github.actor }} is ${{github.workflow}}
+
+on:
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  get-data-from-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        # with:
+        #     ref: main
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - name: run js file
+        run: node ./read-package-file.js
+    
+      
+      
