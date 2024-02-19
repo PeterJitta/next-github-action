@@ -46,4 +46,5 @@ jobs:
     if: ${{ needs.get-package-data-from-main.outputs.MAIN_BRANCH_PACKAGE_VERSION == needs.get-package-data-from-merge-branch.outputs.MERGE_BRANCH_PACKAGE_VERSION }}
     runs-on: ubuntu-latest
     steps:
+      - run: echo "You need to change package version"
       - run: exit 1
