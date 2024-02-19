@@ -1,6 +1,3 @@
-# Step 1 check out main and get that package file
-# Step 2 save package version to output
-
 name: Checking package version drift
 run-name: ${{ github.actor }} is ${{github.workflow}}
 
