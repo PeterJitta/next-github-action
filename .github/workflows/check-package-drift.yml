@@ -31,8 +31,6 @@ jobs:
       MERGE_BRANCH_PACKAGE_VERSION: ${{ steps.packageVersion.outputs.packageVersion }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: main
       - uses: actions/setup-node@v3
         with:
           node-version: 18
