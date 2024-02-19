@@ -1,7 +1,7 @@
 let pjson = require("./package.json");
 const core = require("@actions/core");
 
-const getPackageJsonVerion = () => {
+const getPackageJsonVersion = () => {
   try {
     const packageVersion = pjson.version
     core.setOutput("packageVersion", packageVersion);
@@ -11,4 +11,4 @@ const getPackageJsonVerion = () => {
   }
 };
 
-getPackageJsonVerion();
+getPackageJsonVersion();
