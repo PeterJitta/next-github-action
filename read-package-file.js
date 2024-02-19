@@ -3,7 +3,9 @@ const core = require("@actions/core");
 
 const getPackageJsonVerion = () => {
   try {
-    core.setOutput(pjson.version);
+    const packageVersion = pjson.version
+    core.setOutput("packageVersion", packageVersion);
+    console.info(packageVersion);
   } catch (error) {
     core.setFailed(error.message);
   }
