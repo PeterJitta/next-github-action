@@ -23,6 +23,7 @@ jobs:
       - name: run js file
         id: packageVersion
         run: node ./read-package-file.js
+      - run: echo "${{steps.packageVersion.outputs.packageVersion}}"
   get-package-data-from-merge-branch:
     runs-on: ubuntu-latest
     needs: get-package-data-from-main
@@ -41,6 +42,7 @@ jobs:
       - name: run js file
         id: packageVersion
         run: node ./read-package-file.js
+      - run: echo "${{steps.packageVersion.outputs.packageVersion}}"
   check-package-drift:
     needs: ["get-package-data-from-main", "get-package-data-from-merge-branch"]
     if: ${{ needs.get-package-data-from-main.outputs.MAIN_BRANCH_PACKAGE_VERSION == needs.get-package-data-from-merge-branch.outputs.MERGE_BRANCH_PACKAGE_VERSION }}
