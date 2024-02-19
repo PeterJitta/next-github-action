@@ -1,3 +1,12 @@
-let pjson = require('./package.json');
+let pjson = require("./package.json");
+const core = require("@actions/core");
 
-console.info(pjson);
+const getPackageJsonVerion = () => {
+  try {
+    core.setOutput(pjson.version);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+};
+
+getPackageJsonVerion();
