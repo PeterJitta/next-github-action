@@ -22,7 +22,9 @@ jobs:
       - name: Get current month and year
         id: current-date
         run: |
-          echo "::set-output name=current-date::$(date +'%b %Y')"
+          current_month_year=$(date +'%b %Y')
+          current_month_year_uppercase=$(echo $current_month_year | awk '{print toupper($0)}')
+          echo "::set-output name=current-date::$current_month_year_uppercase"
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
