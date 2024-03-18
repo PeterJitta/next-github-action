@@ -8,6 +8,6 @@ on:
 jobs:
   ignore-push:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name != 'push'
     steps:
-     - run: echo "not ignore main!"
+     - run: echo "should not see this action!"
