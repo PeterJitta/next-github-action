@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
-     - uses: echo "not ignore main!"
+     - run: echo "not ignore main!"
