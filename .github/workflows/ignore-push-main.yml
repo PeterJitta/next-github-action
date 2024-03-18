@@ -1,0 +1,13 @@
+name: ignore push
+run-name: ${{ github.actor }} is ${{github.workflow}}
+
+on:
+  push:
+    branches: "*"
+
+jobs:
+  ignore-push:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+     - uses: echo "not ignore main!"
